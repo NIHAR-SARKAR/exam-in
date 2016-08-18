@@ -1,0 +1,35 @@
+{
+	"user": "nihar Sarkar",
+	"roll": "1425789365",
+	"phone": "91431245678",
+	"address": "new town",
+	"questions": [
+	
+	{"question": " What is your Name ?",
+			"answer": {
+				"one": "nihar",
+				"two": "nilanjan",
+				"three": "Raktim ",
+				"four": "ishita ",
+				"five": "others"
+			},
+			"status": 0,
+			"view": 0,
+			"temp": 0},
+			
+			{"question": " What is your Age ?",
+			"answer": {
+				"one": "14",
+				"two": "18",
+				"three": "21 ",
+				"four": "20 ",
+				"five": "25"
+			},
+			"status": 0,
+			"view": 0,
+			"temp": 0}
+			
+
+	]
+
+}
