@@ -1,0 +1,166 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+
+
+<link href="css/main.css" rel="stylesheet" type="text/css" />
+
+
+<title>Home</title>
+
+
+<link rel="shortcut icon" href="img/favicon.png" />
+
+
+<script type="text/javascript" src="js/jquery.js"> </script>
+<script type="text/javascript" src="js/script.js"> </script>
+
+
+<script type="text/javascript">
+
+ 
+ //answ=0,not_answ=0,not_viewed=0,review=0,save_reviewe=0;
+//answerarr.push({q_id : i , answer : 0 ,status : 0});
+//Not answered=1   Not Visited=0   Answered=2   Marked for Review=2 & 1   Reviewed and Answered= 2 & 1
+</script>
+
+</head>
+
+<body onload="startTime()">
+<div id="full">
+	<div id="top" class="full-width">
+		&nbsp;
+	</div><!--top ends-->
+	
+	<div id="menu" class="full-width">
+		<span class="white font-small right-float">Instruction <img src="img/ico/info-ico.png" style="width: 15px;padding-right: 15px;"/></span>
+	</div><!--menu div ends-->
+	
+	<div id="main" class="full-width">
+		<div id="main-top" class="full-width">
+		<div id="main-top-left" >
+		<div id="time-bar">
+			<span class="highlight-blue">Answers </span>
+			<div class="right-float bold" style="margin-top:10px;">
+			<img src="img/ico/alerm-ico.png" class="small-ico">
+			<span id="remain-time"></span>
+			</div>
+		</div>
+		
+		<div id="symbols">
+			&nbsp;&nbsp;&nbsp;<img src="img/brown-ico.png" class="symbol-small"/> <span class="xo">Not answered </span> 
+			<img src="img/gray-ico.png" class="symbol-small"/> <span class="xo">Not Visited </span> 
+			<img src="img/green-ico.png" class="symbol-small"/> <span class="xo">Answered </span> 
+			<img src="img/blue-ico.png" class="symbol-small"/> <span class="xo">Marked for Review </span> 
+			<img src="img/vio-icon.png" class="symbol-small"/> <span class="xo">Reviewed and Answered </span> 
+			
+		</div>
+		
+	</div>
+	<div id="main-top-right">
+	<div id="profile-image-div">
+		<img src="img/salityx.png" class="mid-image" />
+	</div>
+		
+		<div id="profile-place">
+			<img src="img/ico/user-ico.png" class="small-ico"><span class="bold"  id="user_name">XXXXXXXX</span><br/>
+			<img src="img/ico/label-ico.png" class="small-ico"><span class="bold" id="roll">XXXXXXXX</span><br/>
+			<img src="img/ico/phone-ico.png" class="small-ico"><span class="bold" id="phone">XXXXXXXX</span><br/>
+			<img src="img/ico/place-ico.png" class="small-ico"><span class="bold" id="address">XXXXXXXX</span><br/>
+
+		</div>
+	</div>
+	</div><!--main top div ends-->
+	
+	
+	<div id="main-alter" class="full-width">
+	<div id="main-alter-left" >
+		<div id="language-select" class="full-width">
+		
+		<div class="left-float padding-x" >
+		 <span id="clock" class="white bold lft"></span>
+		</div>
+			<div class="right-float padding-x">
+				<img src="img/ico/tick-ico.png" style="width: 15px;padding-right:5px;"/>Select Lang :
+				<select id="lang-select">
+					<option selected="true" value="eEnglish">English</option>
+					<option value="hindi">Hindi</option>
+					<option value="bengali">Bengali</option>
+				</select> 
+			</div>
+		</div>
+		
+		<div id="main-form" class="full-width">
+		<form id="question">
+			
+			
+		</form>
+		
+		</div><!--question area-->
+		
+		<div id="save-data" class="full-width">
+			<div class="left-float">
+				<input  type="button" value="Mark for Review" onclick="mark_review();" class="btn-whiteblue"/>
+				<input  type="button" value="Clear Response" onclick="clear_response();" class="btn-whiteblue"/>
+			</div>
+			
+			<div class="right-float">
+				<input  type="button" value="Save Next" class="btn-blue" onclick="generate(q_number+1);"/>
+			</div>
+		</div>
+	</div>
+	<div id="main-alter-right">
+	<div id="calculate">
+		
+		<img src="img/brown-ico.png" class="symbol-small"/> <span class="xo" id="not-ans">1</span> 
+			<img src="img/gray-ico.png" class="symbol-small"/> <span class="xo" id="not-view">X</span> 
+			<img src="img/green-ico.png" class="symbol-small"/> <span class="xo" id="answered">x</span> 
+			<img src="img/blue-ico.png" class="symbol-small"/> <span class="xo" id="review">x</span> 
+			<img src="img/vio-icon.png" class="symbol-small"/> <span class="xo" id="rev-answered">x</span> 
+	</div>
+	<hr/>
+	<div id="toggle-answers">
+	
+		</div>
+	</div>
+	
+		
+	</div><!--main alter div ends-->
+	</div><!--main div ends-->
+	
+	<div id="footer" class="full-width">
+		<center><span>&copy; India 2016</span> | Developed by <span id="author1"><a href="http://niharsarkar.tk">Nihar Sarkar</a></span></center>
+	</div><!--top ends-->
+	
+	
+</div>
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		var temp=myjson;
+	$("#user_name").text(temp.user);
+	$("#roll").text(temp.roll);
+	$("#phone").text(temp.phone);
+	$("#address").text(temp.address);
+	
+	
+	var i;
+	for(i=1;i<=temp.questions.length;i++){
+		var x=i-1;
+	$('#toggle-answers').append('<input type="button" class="answer-check" value="'+i+'" id="chk'+i+'" onclick="generate('+x+');" status="0" answer="-1" review="0"/>');
+
+	answerarr.push({q_id : i , answer : -1 , status : 0});
+	}
+	at_check();
+	generate(0);
+	$('#chk1').attr('status',1);
+	$('#chk2').attr('status',0);
+	$('#chk2').css('background-image','url(\'img/gray-ico.png\')');
+	
+});
+
+</script>
+</body>
+</html>
